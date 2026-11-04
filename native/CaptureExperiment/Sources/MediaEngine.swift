@@ -22,7 +22,7 @@ enum MediaEngine {
               let track = try await asset.loadTracks(withMediaType: .video).first else {
             throw ExperimentError.invalid("Unreadable video or no video track.")
         }
-        guard !track.hasMediaCharacteristic(.containsHDRVideo) else {
+        guard !(try await track.load(.mediaCharacteristics)).contains(.containsHDRVideo) else {
             throw ExperimentError.invalid("HDR is outside this SDR experiment. Use an SDR source; no silent tone mapping.")
         }
         let duration = try await asset.load(.duration)
@@ -79,7 +79,7 @@ enum MediaEngine {
 
             if let audio = try await asset.loadTracks(withMediaType: .audio).first {
                 let available = try await audio.load(.timeRange)
-                let overlap = CMTimeRangeGetIntersection(range, available)
+                let overlap = range.intersection(available)
                 if overlap.isValid && overlap.duration > .zero {
                     guard let destination = composition.addMutableTrack(
                         withMediaType: .audio, preferredTrackID: kCMPersistentTrackID_Invalid) else {
