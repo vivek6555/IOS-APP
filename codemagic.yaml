@@ -51,3 +51,43 @@ workflows:
       - /tmp/capture-experiment-swift-test.log
       - /tmp/capture-experiment-simulator-build.log
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/Products/Debug-iphonesimulator/CaptureExperiment.app
+
+  # Builds an UNSIGNED device .ipa for sideloading with a free Apple ID
+  # (e.g. Sideloadly on Windows/Mac). Sideloadly signs it during install.
+  capture-experiment-device-ipa:
+    name: Capture experiment — unsigned iPhone IPA (for sideloading)
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+    environment:
+      xcode: latest
+    triggering:
+      events: []
+    scripts:
+      - name: Build unsigned iPhone app
+        script: |
+          set -euo pipefail
+          cd "$CM_BUILD_DIR/native/CaptureExperiment"
+          xcodebuild build \
+            -project CaptureExperiment.xcodeproj \
+            -scheme CaptureExperiment \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -configuration Release \
+            -derivedDataPath "$CM_BUILD_DIR/build" \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            2>&1 | tee /tmp/capture-experiment-device-build.log
+      - name: Package .ipa
+        script: |
+          set -euo pipefail
+          APP="$CM_BUILD_DIR/build/Build/Products/Release-iphoneos/CaptureExperiment.app"
+          test -d "$APP"
+          mkdir -p "$CM_BUILD_DIR/ipa/Payload"
+          cp -R "$APP" "$CM_BUILD_DIR/ipa/Payload/"
+          cd "$CM_BUILD_DIR/ipa"
+          zip -qry CaptureExperiment-unsigned.ipa Payload
+          ls -lh CaptureExperiment-unsigned.ipa
+    artifacts:
+      - /tmp/capture-experiment-device-build.log
+      - ipa/CaptureExperiment-unsigned.ipa
