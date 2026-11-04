@@ -22,7 +22,7 @@ final class Camera: NSObject, ObservableObject, AVCaptureFileOutputRecordingDele
 
     func discover() {
         lenses = AVCaptureDevice.DiscoverySession(
-            deviceTypes: [.builtInWideAngleCamera, .builtInUltraWideAngleCamera, .builtInTelephotoCamera],
+            deviceTypes: [.builtInWideAngleCamera, .builtInUltraWideCamera, .builtInTelephotoCamera],
             mediaType: .video, position: .back).devices
         if selectedLens.isEmpty { selectedLens = lenses.first?.uniqueID ?? "" }
     }
