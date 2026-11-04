@@ -1,0 +1,53 @@
+# Manual, unsigned CI checks for the bounded native experiment.
+# This workflow does not sign/install an app, run on a physical iPhone, or profile it.
+# No automatic build triggers are configured; start a build manually in Codemagic.
+workflows:
+  capture-experiment-simulator:
+    name: Capture experiment — tests and unsigned simulator build
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+    environment:
+      xcode: latest
+    triggering:
+    
+      events: []
+    scripts:
+      - name: Verify checked-out source contains the experiment
+        script: |
+          set -euo pipefail
+          echo "Codemagic checkout: $CM_BUILD_DIR"
+          echo "Checked-out commit: $(git -C "$CM_BUILD_DIR" rev-parse --short HEAD)"
+          EXPERIMENT_DIR="$CM_BUILD_DIR/native/CaptureExperiment"
+          if [[ ! -f "$EXPERIMENT_DIR/Package.swift" || ! -d "$EXPERIMENT_DIR/CaptureExperiment.xcodeproj" ]]; then
+            echo "ERROR: The selected repository/branch does not contain native/CaptureExperiment."
+            echo "Tracked harness files in this checkout:"
+            git -C "$CM_BUILD_DIR" ls-files '*CaptureExperiment*' || true
+            echo "Nearby package manifests or matching Xcode projects:"
+            find "$CM_BUILD_DIR" -maxdepth 5 \( -name Package.swift -o -name CaptureExperiment.xcodeproj \) -print | head -40 || true
+            echo "Use a Codemagic repository and branch that include the native/CaptureExperiment harness."
+            exit 1
+          fi
+          echo "Harness files are present."
+      - name: Run Swift project persistence tests
+        script: |
+          set -euo pipefail
+          cd "$CM_BUILD_DIR/native/CaptureExperiment"
+          swift test 2>&1 | tee /tmp/capture-experiment-swift-test.log
+      - name: Build unsigned iOS Simulator app
+        script: |
+          set -euo pipefail
+          cd "$CM_BUILD_DIR/native/CaptureExperiment"
+          xcodebuild build \
+            -project CaptureExperiment.xcodeproj \
+            -scheme CaptureExperiment \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            -configuration Debug \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            2>&1 | tee /tmp/capture-experiment-simulator-build.log
+    artifacts:
+      - /tmp/capture-experiment-swift-test.log
+      - /tmp/capture-experiment-simulator-build.log
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/Products/Debug-iphonesimulator/CaptureExperiment.app

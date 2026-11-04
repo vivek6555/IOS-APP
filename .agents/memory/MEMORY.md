@@ -1,0 +1,2 @@
+- [Creative studio scope](creative-studio-scope.md) — Swift approved for the bounded experiment; no user-owned Mac; real-device evidence required.
+- [External build source](external-build-source.md) — Verify the external checkout before assuming it matches the task workspace.

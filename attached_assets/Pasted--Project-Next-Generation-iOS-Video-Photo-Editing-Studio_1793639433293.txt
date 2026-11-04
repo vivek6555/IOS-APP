@@ -1,0 +1,264 @@
+# Project: Next-Generation iOS Video & Photo Editing Studio
+
+Act as a Senior iOS Product Architect, Professional Video Editor Engineer, Computational Photography Specialist, and UI/UX Designer.
+
+I want to plan and eventually build a powerful, premium-quality iOS application that combines professional video editing, photo editing, social media content creation, and a professional camera into one application.
+
+The goal is to create an application that delivers a polished, powerful creative experience comparable to leading professional editing applications, while having its own unique identity, interface, and workflow.
+
+**IMPORTANT: Do not start coding immediately. First discuss the product vision, technical feasibility, architecture, features, development roadmap, and limitations with me. Challenge weak ideas and suggest better approaches.**
+
+## 1. Product Vision
+
+Build an all-in-one iOS Creative Studio with four major modules:
+
+### A. Professional Video Editor
+A powerful timeline-based video editor with:
+
+- Multi-track video and audio timeline.
+- Trim, split, crop, rotate, merge and speed adjustment.
+- Slow motion, fast motion and reverse playback.
+- Keyframe animation.
+- Transitions and cinematic effects.
+- Color grading, exposure, contrast, saturation, highlights and shadows.
+- LUT support.
+- Chroma key / green screen.
+- Masking and blending modes.
+- Text, animated titles, captions and subtitles.
+- Music, voiceovers and sound effects.
+- Audio waveform and volume control.
+- Picture-in-picture.
+- Video stabilization where technically supported.
+- Background removal where feasible.
+- High-quality video export.
+- Project saving and editing continuation.
+
+### B. Professional Photo Editor
+
+Create a powerful photo-editing workspace featuring:
+
+- Crop, resize, rotate and perspective correction.
+- Exposure, brightness, contrast and color adjustments.
+- HSL color controls.
+- Curves and professional color grading.
+- Filters and customizable presets.
+- AI background removal.
+- Object removal and retouching.
+- Portrait enhancement.
+- Blur and depth effects.
+- Text, stickers, shapes and overlays.
+- Layers and masking.
+- Before/after comparison.
+- High-resolution image export.
+
+Preserve original image quality and avoid destructive editing wherever possible.
+
+### C. Instagram & Social Media Content Studio
+
+Make content creation for Instagram and other social platforms extremely convenient.
+
+Include:
+
+- Instagram Reels creation.
+- Instagram Stories creation.
+- Instagram Posts.
+- Carousel designs.
+- YouTube Shorts.
+- TikTok-style vertical videos.
+- Ready-made templates.
+- Animated text and subtitles.
+- Auto captions.
+- Music synchronization.
+- Beat detection.
+- Social media aspect ratio presets:
+  - 9:16
+  - 4:5
+  - 1:1
+  - 16:9
+- Platform-specific export presets.
+- Cover and thumbnail creation.
+- Brand kits and reusable templates.
+
+The user should be able to import media, choose a format, edit, preview and export quickly.
+
+### D. Professional Camera App
+
+This should be a major standalone module, not just a basic camera screen.
+
+Explore the possibility of building a professional manual camera with:
+
+**Photo controls**
+- Manual focus.
+- Manual ISO.
+- Shutter speed.
+- White balance.
+- Exposure compensation.
+- Focus peaking if supported.
+- Histogram.
+- Grid and level indicators.
+- RAW / ProRAW capture where supported.
+- High-resolution capture.
+- Timer and burst mode.
+- Manual lens selection where supported.
+
+**Video controls**
+- Manual focus.
+- ISO and shutter speed.
+- White balance.
+- Frame rate selection.
+- 24, 25, 30, 60 and higher FPS where supported.
+- Resolution selection, including 4K where supported.
+- Video stabilization options.
+- Focus and exposure locking.
+- Audio input selection where supported.
+- Live recording information.
+- Professional recording interface.
+
+Explore AVFoundation and native iOS camera APIs to determine which features are realistically available on different iPhone models.
+
+## 2. Advanced AI Features
+
+Investigate useful AI-powered features:
+
+- Automatic video editing.
+- Smart highlight detection.
+- Automatic captions.
+- Background removal.
+- Object removal.
+- AI image enhancement.
+- AI-powered color correction.
+- Automatic beat synchronization.
+- Text-to-video possibilities.
+- Image-to-video possibilities.
+- Voice cleanup.
+- Intelligent scene detection.
+- AI-generated social media templates.
+
+Separate features that can run on-device from features requiring cloud AI services. Explain API costs, privacy implications and processing requirements.
+
+## 3. Premium UI/UX Requirements
+
+The application should feel like a premium professional creative product.
+
+Design principles:
+
+- Modern, minimal and elegant interface.
+- Dark editing workspace.
+- Excellent typography and spacing.
+- Smooth transitions and animations.
+- Professional timeline interface.
+- Intuitive gestures.
+- Responsive editing controls.
+- Native iOS interaction patterns.
+- High-quality preview player.
+- No unnecessary clutter.
+- Consistent design system across all modules.
+
+Create a distinctive brand identity rather than copying an existing application's interface.
+
+## 4. Technical Architecture
+
+Evaluate the best native iOS architecture.
+
+Consider:
+
+- Swift.
+- SwiftUI.
+- UIKit where necessary.
+- AVFoundation.
+- Core Image.
+- Core Video.
+- Metal.
+- Photos framework.
+- Vision framework.
+- Core ML.
+- Video encoding and decoding.
+- Background rendering and export.
+- Efficient memory management.
+- GPU acceleration.
+- Non-destructive editing architecture.
+- Project file format and autosave.
+- Media asset management.
+
+Replit will be used for AI-assisted development and project planning. Clearly explain which parts can be developed through Replit and which parts require Xcode, macOS, an actual iPhone, or native iOS development tools.
+
+Do not assume that a web application wrapped in a WebView will provide the required professional camera and editing capabilities.
+
+## 5. Performance Requirements
+
+The app must be designed for real-world professional usage.
+
+Priorities:
+
+- Smooth timeline playback.
+- Efficient handling of 4K video.
+- Responsive scrubbing.
+- Low memory consumption.
+- Reliable background export.
+- No loss of editing projects.
+- Efficient GPU processing.
+- Good battery and thermal management.
+- Support for different iPhone generations.
+
+Explain what performance targets are realistic.
+
+## 6. Business and Product Strategy
+
+Discuss:
+
+- Free versus premium features.
+- Subscription model.
+- One-time purchase possibilities.
+- Cloud storage requirements.
+- AI processing costs.
+- Offline editing support.
+- Privacy and security.
+- App Store distribution.
+- Competitor differentiation.
+
+The application should provide meaningful functionality even without an internet connection.
+
+## 7. Development Roadmap
+
+Break development into realistic phases:
+
+Phase 1: Product architecture and technical feasibility.
+
+Phase 2: UI/UX prototype and design system.
+
+Phase 3: Professional camera module.
+
+Phase 4: Core video editing engine.
+
+Phase 5: Photo editing engine.
+
+Phase 6: Social media content studio.
+
+Phase 7: AI-powered editing tools.
+
+Phase 8: Performance optimization, testing and App Store release.
+
+For each phase, identify dependencies, risks, estimated complexity and deliverables.
+
+## 8. How I Want You to Work With Me
+
+Before development, provide:
+
+1. Your recommended overall architecture.
+2. Recommended technology stack.
+3. Complete feature breakdown.
+4. Native iOS implementation strategy.
+5. Proposed application navigation and screen structure.
+6. Video editing engine design.
+7. Photo editing engine design.
+8. Professional camera implementation strategy.
+9. AI integration strategy.
+10. Development roadmap with milestones.
+11. Major technical challenges and realistic solutions.
+12. Estimated development effort and infrastructure costs.
+
+Ask me questions where important product decisions are unclear.
+
+**Do not generate the entire application in one attempt. Do not create a superficial UI-only prototype and call it complete. Plan a production-oriented application with real editing, rendering, camera capture and media-processing capabilities.**
+
+Our objective is to build a genuinely powerful iOS Creative Studio that can compete in the professional mobile content creation market.

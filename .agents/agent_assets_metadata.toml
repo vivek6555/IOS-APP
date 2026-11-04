@@ -1,0 +1,16 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "t-0mvdQ6fjZEHqk8c2-W-"
+uri = "file://docs/creative-studio-feasibility.md"
+type = "text"
+title = "iOS Creative Studio — Feasibility Blueprint"
+description = "Architecture comparison, full feature matrix, native engine design, device acceptance tests, roadmap, costs and decisions awaiting approval."
+logical_id = "86458b28-a055-4678-b0f4-6af94ee630fa"
+content_hash = "sha256:7418deb75802faf3a80e932b17b6388cf909d1c70bc1427069e383181dbc4fb1"
+size = 36100
+mtime_ms = 1793639988972
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:12188836-1066-4bb5-b5d9-5734337bda91/86458b28-a055-4678-b0f4-6af94ee630fa/0be4e8f1-b198-46e1-86ff-7f8df69400ed"
+storage_version_token = "1793640023909147"
+content_type = "text/markdown"
